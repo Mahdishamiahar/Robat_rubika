@@ -1,0 +1,40 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>داشبورد ربات VIPZEXNET</title>
+  <style>
+    body { font-family: Tahoma; direction: rtl; background: #fff; padding: 20px; }
+    h2 { color: #333; }
+    .user { border-bottom: 1px solid #ccc; padding: 10px; }
+    .btn { padding: 5px 10px; background: #f44336; color: white; margin-right: 10px; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>لیست کاربران و امتیازها</h2>
+  <div id="users"></div>
+
+  <script>
+    if (localStorage.getItem("auth") !== "ok") location.href = "index.html";
+
+    fetch("/api/users").then(res => res.json()).then(data => {
+      let html = "";
+      Object.entries(data).forEach(([user, info]) => {
+        html += "<div class='user'><b>@" + user + "</b> | امتیاز: " + info.score + " | اخطار: " + info.warn +
+        "<button class='btn' onclick='warnUser(\"" + user + "\")'>اخطار</button>" +
+        "<button class='btn' onclick='banUser(\"" + user + "\")'>بن</button></div>";
+      });
+      document.getElementById("users").innerHTML = html;
+    });
+
+    function warnUser(user) {
+      fetch("/api/warn/" + user).then(() => alert("اخطار ثبت شد"));
+    }
+
+    function banUser(user) {
+      fetch("/api/ban/" + user).then(() => alert("کاربر حذف شد (فقط در دیتابیس)"));
+    }
+  </script>
+</body>
+</html>

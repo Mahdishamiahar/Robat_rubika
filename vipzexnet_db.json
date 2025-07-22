@@ -1,0 +1,11 @@
+
+{
+  "warnings": {
+    "user1": 1,
+    "user2": 2
+  },
+  "scores": {
+    "user1": 5,
+    "user2": 10
+  }
+}

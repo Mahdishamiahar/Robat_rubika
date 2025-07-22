@@ -1,0 +1,31 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>ورود پنل مدیریت VIPZEXNET</title>
+  <style>
+    body { font-family: Tahoma; text-align: center; background: #f0f0f0; padding-top: 100px; }
+    input { padding: 10px; font-size: 18px; margin: 10px; }
+    button { padding: 10px 30px; font-size: 18px; background: #4caf50; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h2>ورود به پنل VIPZEXNET</h2>
+  <input type="password" id="pass" placeholder="رمز عبور را وارد کنید" />
+  <br />
+  <button onclick="login()">ورود</button>
+
+  <script>
+    function login() {
+      let p = document.getElementById('pass').value;
+      if(p === "87654321") {
+        localStorage.setItem("auth", "ok");
+        window.location.href = "dashboard.html";
+      } else {
+        alert("رمز نادرست است");
+      }
+    }
+  </script>
+</body>
+</html>
